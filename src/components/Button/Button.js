@@ -1,7 +1,7 @@
 import React from 'react';
 import { ToggleButton } from 'react-bootstrap';
 
-export function Button({name, onClick = ()=>{}, initialState}) {
+export default function Button({name, onClick = ()=>{}, initialState}) {
     return (
         <ToggleButton
             className="mb-2"
