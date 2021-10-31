@@ -1,7 +1,7 @@
 import React from "react";
 import Loading from "../Loading/Loading.js";
+import FilterSection from "../FilterSection/FilterSection.js";
 import ProdudctContainer from "../ProductContainer/ProductContainer.js";
-import {Async} from "react-async";
 import "../Catalog/Catalog.css";
 
 const URL = "http://localhost:3001";
@@ -17,37 +17,43 @@ async function fetchData() {
 }
 
 export function Catalog(props){
-    return ( 
-    <div className="catalog-container">
-        <div className="catalog-title">
-            <h1>Our Products</h1>
-        </div>
+    const [loading, setLoading] = React.useState(true);
+    const [products, setProducts] = React.useState([]);
+    const [minPriceFilter, setMinPriceFilter] = React.useState("");
+    const [maxPriceFilter, setMaxPriceFilter] = React.useState("");
+    const [nameFilter, setNameFilter] = React.useState("");
 
-        
-        <Async promiseFn={fetchData}>
-            <Async.Pending> 
-                <Loading/> 
-            </Async.Pending>
-
-            <Async.Fulfilled>
-                {products => <ProdudctContainer products={products}/>}
-            </Async.Fulfilled>
-
-            <Async.Rejected>
-                {"There seems to have been an issue, please try again later!"}
-            </Async.Rejected>
-        </Async>
-    </div>
+    React.useEffect(
+        () => {
+            fetchData().then(data => {
+                setProducts(data.filter(product => filterFn(product, minPriceFilter, maxPriceFilter, nameFilter)));
+                setLoading(false);
+            });
+        },[minPriceFilter, maxPriceFilter, nameFilter]
     );
-};
 
-// products.map(product => (
-//     <div className="catalog-item" key={product.id}>
-//         <img src={product.image} alt={product.name} />
-//         <div className="catalog-item-info">
-//             <h3>{product.name}</h3>
-//             <p>{product.description}</p>
-//             <p>${product.price_dollar}.{product.price_cents}</p>
-//         </div>
-//     </div>
-// ))
+    return (
+        <div className="catalog-container">
+            <div className="catalog-title">
+             <h1>Our Products</h1>
+         </div>
+            <FilterSection
+                setMaxPriceFilter={setMaxPriceFilter}
+                setMinPriceFilter={setMinPriceFilter}
+                setNameFilter={setNameFilter}
+            />
+
+            {loading ? <Loading /> : <ProdudctContainer products={products} />}
+        </div>
+    )
+}
+
+function filterFn(product, minPrice, maxPrice, name){
+    let ret = true;
+
+    ret = minPrice ? (ret && (minPrice <= product.price_dollar+product.price_cents/100)) : ret;
+    ret = maxPrice ? (ret && (maxPrice >= product.price_dollar+product.price_cents/100)) : ret;
+    ret = name ? (ret && (product.name.toLowerCase().includes(name.toLowerCase()))) : ret;
+
+    return ret;
+}
