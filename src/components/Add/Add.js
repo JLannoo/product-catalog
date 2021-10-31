@@ -70,7 +70,6 @@ async function AddProduct(name, description, priceDollar, priceCents, image){
             image: image
         })
     });
-    const data = await response.json();
 
     if(response.ok === 200){
         alert("Product added!");
