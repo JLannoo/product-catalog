@@ -52,29 +52,32 @@ export default function Add(props){
 }
 
 async function AddProduct(name, description, priceDollar, priceCents, image){
-    while(priceCents > 99){
-        priceCents -= 100;
-        priceDollar++;  
-    }
-
-    const response = await fetch(URL, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            name: name,
-            description: description,
-            price_dollar: priceDollar,
-            price_cents: priceCents,
-            image: image
-        })
-    });
-
-    if(response.ok === 200){
-        alert("Product added!");
-    }
-    else{
+    if(name && description && priceDollar && priceCents && image){
+        while(priceCents > 99){
+            priceCents -= 100;
+            priceDollar++;  
+        }
+    
+        const response = await fetch(URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: name,
+                description: description,
+                price_dollar: priceDollar,
+                price_cents: priceCents,
+                image: image
+            })
+        });
+    
+        if(response.ok === 200){
+            alert("Product added!");
+        } else {
+            alert("Error adding product!\n" + "Please check all field are completed");
+        }
+    } else {
         alert("Error adding product!\n" + "Please check all field are completed");
     }
 }
