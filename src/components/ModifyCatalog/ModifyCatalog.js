@@ -30,15 +30,19 @@ export function Modify() {
                 <div className="modify-title">
                     <h1>Modify Catalog</h1>
                 </div>
-                <div>
+                <div className="modify-tabs">
                 <Tabs
-                    id="controlled-tab-example"
+                    id="controlled-tab"
                     activeKey={key}
                     onSelect={(k) => setKey(k)}
-                    className="mb-3"
-                    >
+                    className="mb-3 "
+                    style={{display:"flex", 
+                            justifyContent: "center"
+                    }}>
                     {Object.keys(pages).map((k) => (
-                        <Tab eventKey={k} title={pages[k].title} key={k}>
+                        <Tab eventKey={k} 
+                            title={pages[k].title} 
+                            key={k}>
                             {pages[k].component}
                         </Tab>
                     ))}
