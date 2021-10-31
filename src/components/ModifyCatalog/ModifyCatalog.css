@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap');
+
+.modify-container {
+    display: flex;
+    align-items: center;
+
+    flex-direction: column;
+}
+
+.modify-title{
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 2em;
+
+    display: flex;
+}
