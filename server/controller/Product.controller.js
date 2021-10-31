@@ -5,9 +5,9 @@ const connection = db.connect()
 exports.getAll = (req, res) => {
     connection.query("SELECT * FROM products", (err, result) => {
         if (err) {
-          res.status(500).send(err.sqlMessage);
+          res.status(500).json(err.sqlMessage);
         } else {  
-          res.status(200).send(result);
+          res.status(200).json(result);
         }
       });
 }
@@ -20,9 +20,9 @@ exports.getByID = (req, res) => {
     } else {
       connection.query("SELECT * FROM products WHERE id = ?", [id], (err, result) => {
           if (err) {
-            res.status(500).send(err.sqlMessage);
+            res.status(500).json(err.sqlMessage);
           } else {  
-            res.status(200).send(result);
+            res.status(200).json(result);
           }
         });
     }
@@ -39,9 +39,9 @@ exports.addProduct = (req, res) => {
 
     connection.query("INSERT INTO products SET name=?, description=?, price_cents=?, price_dollar=?, image=?", [name,description, price_cents, price_dollar, image], (err, result) => {
         if (err) {
-          res.status(500).send(err.sqlMessage);
+          res.status(500).json(err.sqlMessage);
         } else {  
-          res.status(200).send(result);
+          res.status(200).json(result);
         }
       });
 }
@@ -50,9 +50,9 @@ exports.deleteProduct = (req, res) => {
     const id = req.params.id;
     connection.query("DELETE FROM products WHERE id = ?", [id], (err, result) => {
         if (err) {
-          res.status(500).send(err.sqlMessage);
+          res.status(500).json(err.sqlMessage);
         } else {  
-          res.status(200).send(result);
+          res.status(200).json(result);
         }
       });
 }
@@ -67,9 +67,9 @@ exports.modifyProduct = (req, res) => {
 
     connection.query("UPDATE products SET name=?, description=?, price_cents=?, price_dollar=?, image=? WHERE id=?", [name,description, price_cents, price_dollar, image, id], (err, result) => {
         if (err) {
-          res.status(500).send(err.sqlMessage);
+          res.status(500).json(err.sqlMessage);
         } else {  
-          res.status(200).send(result);
+          res.status(200).json(result);
         }
       });
 }
