@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Catalog }  from "../Catalog/Catalog.js";
 import { Modify } from "../ModifyCatalog/ModifyCatalog.js";
-import { Button } from "../Button/Button";
+import Button from "../Button/Button";
 import logo from '../../ae-logo.svg';
 import './App.css';
 
