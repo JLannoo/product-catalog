@@ -52,7 +52,7 @@ export default function Add(props){
 }
 
 async function AddProduct(name, description, priceDollar, priceCents, image){
-    if(name && description && priceDollar && priceCents && image){
+    if(name !== "" && description !== "" && priceDollar !== "" && priceCents !== "" && image !== ""){
         while(priceCents > 99){
             priceCents -= 100;
             priceDollar++;  
@@ -71,13 +71,16 @@ async function AddProduct(name, description, priceDollar, priceCents, image){
                 image: image
             })
         });
+
+        console.log(response);
     
-        if(response.ok === 200){
+        if(response.ok){
             alert("Product added!");
         } else {
-            alert("Error adding product!\n" + "Please check all field are completed");
+            alert("There seems to have been an issue. Please try again later!");
         }
     } else {
         alert("Error adding product!\n" + "Please check all field are completed");
     }
+    window.location.reload();
 }
