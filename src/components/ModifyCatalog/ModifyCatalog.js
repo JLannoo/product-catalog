@@ -5,19 +5,17 @@ import Delete from "../Delete/Delete.js"
 import Edit from "../Edit/Edit.js"
 import { Tabs, Tab } from "react-bootstrap"
 
-const BASE_URL = "http://localhost:3001/products/"
-
 const pages = {
     Add: {
-      title: 'Add',
+      title: 'Add Product',
       component: <Add />,
     },
     Delete: {
-      title: 'Delete',
+      title: 'Delete Product',
       component: <Delete />,
     },
     Edit: {
-      title: 'Edit',
+      title: 'Edit Product',
       component: <Edit />,
     },
   }
