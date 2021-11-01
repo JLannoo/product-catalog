@@ -1,10 +1,10 @@
-require('dotenv').config({path: '.env'});
+require('dotenv').config();
 const mysql = require('mysql');
 
 const HOST = process.env.DB_HOST;
 const USER = process.env.DB_USER;
 const PASS = process.env.DB_PASS;
-const DB = process.env.DB;
+const DB = process.env.DB_NAME;
 
 exports.connect =  function (){
   const db = mysql.createConnection({
