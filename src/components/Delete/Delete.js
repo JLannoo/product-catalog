@@ -5,7 +5,7 @@ import Loading from '../Loading/Loading.js';
 const HOST = process.env.HOST || "localhost";
 const PORT = process.env.PORT || "3000";
 
-const URL = `http:${HOST}//:${PORT}`;
+const URL = `http://${HOST}${PORT ? ":"+PORT : ""}`;
 
 async function fetchData() {
     const response = await fetch(`${URL}/products/`)

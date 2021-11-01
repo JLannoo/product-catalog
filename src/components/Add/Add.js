@@ -6,7 +6,7 @@ import { Row, Col } from 'react-bootstrap'
 const HOST = process.env.HOST || "localhost";
 const PORT = process.env.PORT || "3000";
 
-const URL = `http:${HOST}//:${PORT}`;
+const URL = `http://${HOST}${PORT ? ":"+PORT : ""}`;
 
 export default function Add(props){
     const [name, setName] = React.useState('');
