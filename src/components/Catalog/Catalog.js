@@ -3,23 +3,9 @@ import Loading from "../Loading/Loading.js";
 import FilterSection from "../FilterSection/FilterSection.js";
 import ProdudctContainer from "../ProductContainer/ProductContainer.js";
 import "../Catalog/Catalog.css";
+import { fetchData } from "../../apiAccess";
 
-const HOST = process.env.HOST || "localhost";
-const PORT = process.env.PORT || "3000";
-
-const URL = `http:${HOST}//:${PORT}`;
-
-async function fetchData() {
-    const response = await fetch(`${URL}/products/`)
-
-    if(!response.ok) {
-        throw new Error(response.statusText);
-    }
-    const data = await response.json();
-    return data;
-}
-
-export function Catalog(props){
+export function Catalog(){
     const [loading, setLoading] = React.useState(true);
     const [products, setProducts] = React.useState([]);
     const [minPriceFilter, setMinPriceFilter] = React.useState("");

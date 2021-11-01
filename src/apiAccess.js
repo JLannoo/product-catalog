@@ -1,5 +1,11 @@
 const API_URL = process.env.API_URL;
 
+export async function fetchData(){
+    const response = await fetch(API_URL);
+    const data = await response.json();
+    return data;
+}
+
 export async function addProduct(name, description, priceDollar, priceCents, image){
     if(name !== "" && description !== "" && priceDollar !== "" && priceCents !== "" && image !== ""){
         while(priceCents > 99){

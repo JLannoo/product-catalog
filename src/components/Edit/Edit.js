@@ -4,17 +4,7 @@ import Forms from 'react-bootstrap/Form';
 import {Row, Col, Button} from 'react-bootstrap';
 import ProdudctContainer from "../ProductContainer/ProductContainer.js";
 import Loading from '../Loading/Loading.js';
-import { editProduct } from '../../apiAccess';
-
-async function fetchData() {
-    const response = await fetch(`${URL}/products/`)
-    console.log(response);
-    if(!response.ok) {
-        throw new Error(response.statusText);
-    }
-    const data = await response.json();
-    return data;
-}
+import { fetchData, editProduct } from '../../apiAccess';
 
 export default function Edit(){
     const [editingView, setEditingView] = React.useState(false);

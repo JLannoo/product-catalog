@@ -1,17 +1,7 @@
 import Async from 'react-async';
 import ProdudctContainer from "../ProductContainer/ProductContainer.js";
 import Loading from '../Loading/Loading.js';
-import { deleteProduct } from '../../apiAccess';
-
-async function fetchData() {
-    const response = await fetch(`${URL}/products/`)
-
-    if(!response.ok) {
-        throw new Error(response.statusText);
-    }
-    const data = await response.json();
-    return data;
-}
+import { fetchData, deleteProduct } from '../../apiAccess';
 
 export default function Delete(props){
        
