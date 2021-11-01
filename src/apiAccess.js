@@ -1,12 +1,12 @@
-const API_URL = process.env.API_URL;
-
 export async function fetchData(){
+    const API_URL = process.env.API_URL;
     const response = await fetch(`${API_URL}/products`);
     const data = await response.json();
     return data;
 }
 
 export async function addProduct(name, description, priceDollar, priceCents, image){
+    const API_URL = process.env.API_URL;
     if(name !== "" && description !== "" && priceDollar !== "" && priceCents !== "" && image !== ""){
         while(priceCents > 99){
             priceCents -= 100;
@@ -41,6 +41,7 @@ export async function addProduct(name, description, priceDollar, priceCents, ima
 }
 
 export async function deleteProduct(id, name){   
+    const API_URL = process.env.API_URL;
     const confirm = window.confirm(`Are you sure you want to delete ${name}?`);
 
     if(confirm){
@@ -61,6 +62,7 @@ export async function deleteProduct(id, name){
 }
 
 export async function editProduct({id, name, description, price_cents, price_dollar, image}){
+    const API_URL = process.env.API_URL;
     console.log(id, name, description, price_cents, price_dollar, image);
 
     if(name !== ""  && description !== ""  && price_cents !== "" && price_dollar !== ""  && image !== ""){
