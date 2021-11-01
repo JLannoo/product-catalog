@@ -5,11 +5,14 @@ import {Row, Col, Button} from 'react-bootstrap';
 import ProdudctContainer from "../ProductContainer/ProductContainer.js";
 import Loading from '../Loading/Loading.js';
 
-const URL = "http://localhost:3001"
+const HOST = process.env.HOST || "localhost";
+const PORT = process.env.PORT || "3000";
+
+const URL = `http:${HOST}//:${PORT}`;
 
 async function fetchData() {
     const response = await fetch(`${URL}/products/`)
-
+    console.log(response);
     if(!response.ok) {
         throw new Error(response.statusText);
     }
@@ -17,7 +20,7 @@ async function fetchData() {
     return data;
 }
 
-export default function Edit(props){
+export default function Edit(){
     const [editingView, setEditingView] = React.useState(false);
     const [product, setProduct] = React.useState({});
 
@@ -129,22 +132,3 @@ async function editProduct({id, name, description, price_cents, price_dollar, im
         alert("Please fill out all fields!")
     }
 }
-
-{/* <h3>Which product would you like to edit?</h3>
-                <Async promiseFn={fetchData}>
-                    <Async.Pending> 
-                        <Loading/> 
-                    </Async.Pending>
-
-                    <Async.Fulfilled>
-                        {products => 
-                            <>
-                                <ProdudctContainer products={products} type="edit" editFn={editProduct}/>
-                            </>
-                        }  
-                    </Async.Fulfilled>
-
-                    <Async.Rejected>
-                        {"There seems to have been an issue, please try again later!"}
-                    </Async.Rejected>
-                </Async> */}

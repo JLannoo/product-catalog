@@ -4,7 +4,10 @@ import FilterSection from "../FilterSection/FilterSection.js";
 import ProdudctContainer from "../ProductContainer/ProductContainer.js";
 import "../Catalog/Catalog.css";
 
-const URL = "http://localhost:3001";
+const HOST = process.env.HOST || "localhost";
+const PORT = process.env.PORT || "3000";
+
+const URL = `http:${HOST}//:${PORT}`;
 
 async function fetchData() {
     const response = await fetch(`${URL}/products/`)

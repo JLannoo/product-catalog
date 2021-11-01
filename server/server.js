@@ -1,16 +1,19 @@
 const express = require('express');
+require('dotenv').config();
 const controller = require('./controller/Product.controller.js');
 const cors = require('cors');
+
+const PORT = process.env.PORT || 3001;
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
-const server = app.listen(3001);
+const server = app.listen(PORT);
 
 server.on('listening', () => {
-  console.log('listening on port 3001');
+  console.log(`listening on port ${PORT}`);
 });
 
 app.get('/products/', (req, res) => {

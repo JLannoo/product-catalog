@@ -3,7 +3,10 @@ import Forms from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import { Row, Col } from 'react-bootstrap'
 
-const URL = "http://localhost:3001/products/"
+const HOST = process.env.HOST || "localhost";
+const PORT = process.env.PORT || "3000";
+
+const URL = `http:${HOST}//:${PORT}`;
 
 export default function Add(props){
     const [name, setName] = React.useState('');
@@ -58,7 +61,7 @@ async function AddProduct(name, description, priceDollar, priceCents, image){
             priceDollar++;  
         }
     
-        const response = await fetch(URL, {
+        const response = await fetch(`${URL}/products/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

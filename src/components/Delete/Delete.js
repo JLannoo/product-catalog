@@ -2,7 +2,10 @@ import Async from 'react-async';
 import ProdudctContainer from "../ProductContainer/ProductContainer.js";
 import Loading from '../Loading/Loading.js';
 
-const URL = "http://localhost:3001"
+const HOST = process.env.HOST || "localhost";
+const PORT = process.env.PORT || "3000";
+
+const URL = `http:${HOST}//:${PORT}`;
 
 async function fetchData() {
     const response = await fetch(`${URL}/products/`)
