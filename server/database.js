@@ -7,26 +7,22 @@ const PASS = process.env.DB_PASS;
 const DB = process.env.DB_NAME;
 
 exports.connect =  function (){
-  const db = mysql.createConnection({
+  const db = mysql.createPool({
       host: HOST,
       user: USER,
       password: PASS,
       database: DB
   });
 
-  function createNewConnection(){
-    db.connect((err) => {
+  db.getConnection(function(err, connection) {
       if (err) {
-        
+          console.log(err);
+          return;
       }
-      console.log('MySQL Connected...');
-    });
-  };
-
-  createNewConnection();
-
-  db.on('error', (err) => {
-    createNewConnection();
+      if (connection) {
+          connection.release();
+          console.log("Database is connected");
+      }
   });
 
   return db;
