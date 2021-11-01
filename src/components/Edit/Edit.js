@@ -4,11 +4,7 @@ import Forms from 'react-bootstrap/Form';
 import {Row, Col, Button} from 'react-bootstrap';
 import ProdudctContainer from "../ProductContainer/ProductContainer.js";
 import Loading from '../Loading/Loading.js';
-
-const HOST = process.env.HOST || "localhost";
-const PORT = process.env.PORT || "3000";
-
-const URL = `http://${HOST}${PORT ? ":"+PORT : ""}`;
+import { editProduct } from '../../apiAccess';
 
 async function fetchData() {
     const response = await fetch(`${URL}/products/`)
@@ -102,33 +98,4 @@ export default function Edit(){
             } 
         </div>
     )
-}
-
-async function editProduct({id, name, description, price_cents, price_dollar, image}){
-    console.log(id, name, description, price_cents, price_dollar, image);
-
-    if(name !== ""  && description !== ""  && price_cents !== "" && price_dollar !== ""  && image !== ""){
-        const response = await fetch(`${URL}/products/${id}`, {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                name,
-                description,
-                price_cents,
-                price_dollar,
-                image
-            })
-        })
-
-        if(response.ok){
-            alert("Product successfully edited!")
-            window.location.reload();
-        } else {
-            alert("There seems to have been an issue, please try again later!")
-        }
-    } else {
-        alert("Please fill out all fields!")
-    }
 }

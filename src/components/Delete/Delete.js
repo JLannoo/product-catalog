@@ -1,11 +1,7 @@
 import Async from 'react-async';
 import ProdudctContainer from "../ProductContainer/ProductContainer.js";
 import Loading from '../Loading/Loading.js';
-
-const HOST = process.env.HOST || "localhost";
-const PORT = process.env.PORT || "3000";
-
-const URL = `http://${HOST}${PORT ? ":"+PORT : ""}`;
+import { deleteProduct } from '../../apiAccess';
 
 async function fetchData() {
     const response = await fetch(`${URL}/products/`)
@@ -41,24 +37,4 @@ export default function Delete(props){
                 </Async>
         </div>
     )
-}
-
-async function deleteProduct(id, name){   
-    const confirm = window.confirm(`Are you sure you want to delete ${name}?`);
-
-    if(confirm){
-        const response = await fetch(`${URL}/products/${id}`, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-        console.log(response);
-        if(response.ok){
-            alert("Product Deleted!")
-        } else {
-            alert("Product could not be deleted")
-        }
-        window.location.reload();
-    }
 }

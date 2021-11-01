@@ -2,11 +2,7 @@ import React from "react"
 import Forms from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import { Row, Col } from 'react-bootstrap'
-
-const HOST = process.env.HOST || "localhost";
-const PORT = process.env.PORT || "3000";
-
-const URL = `http://${HOST}${PORT ? ":"+PORT : ""}`;
+import { addProduct } from "../../apiAccess"
 
 export default function Add(props){
     const [name, setName] = React.useState('');
@@ -47,43 +43,10 @@ export default function Add(props){
                 </Forms.Group>
             </Forms>
 
-            <Button variant="primary" type="button" onClick={(e) => AddProduct(name, description, priceDollar, priceCents, image)}>
+            <Button variant="primary" type="button" onClick={(e) => addProduct(name, description, priceDollar, priceCents, image)}>
                     Submit
             </Button>
         </div>
     )
 }
 
-async function AddProduct(name, description, priceDollar, priceCents, image){
-    if(name !== "" && description !== "" && priceDollar !== "" && priceCents !== "" && image !== ""){
-        while(priceCents > 99){
-            priceCents -= 100;
-            priceDollar++;  
-        }
-    
-        const response = await fetch(`${URL}/products/`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                name: name,
-                description: description,
-                price_dollar: priceDollar,
-                price_cents: priceCents,
-                image: image
-            })
-        });
-
-        console.log(response);
-    
-        if(response.ok){
-            alert("Product added!");
-        } else {
-            alert("There seems to have been an issue. Please try again later!");
-        }
-    } else {
-        alert("Error adding product!\n Please check all field are completed");
-    }
-    window.location.reload();
-}
