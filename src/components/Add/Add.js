@@ -83,7 +83,7 @@ async function AddProduct(name, description, priceDollar, priceCents, image){
             alert("There seems to have been an issue. Please try again later!");
         }
     } else {
-        alert("Error adding product!\n" + "Please check all field are completed");
+        alert("Error adding product!\n Please check all field are completed");
     }
     window.location.reload();
 }
