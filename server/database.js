@@ -14,11 +14,19 @@ exports.connect =  function (){
       database: DB
   });
 
-  db.connect((err) => {
-    if (err) {
-      throw err;
-    }
-    console.log('MySQL Connected...');
+  function createNewConnection(){
+    db.connect((err) => {
+      if (err) {
+        
+      }
+      console.log('MySQL Connected...');
+    });
+  };
+
+  createNewConnection();
+
+  db.on('error', (err) => {
+    createNewConnection();
   });
 
   return db;
