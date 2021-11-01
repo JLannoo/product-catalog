@@ -1,7 +1,7 @@
 const API_URL = process.env.API_URL;
 
 export async function fetchData(){
-    const response = await fetch(API_URL);
+    const response = await fetch(`${API_URL}/products`);
     const data = await response.json();
     return data;
 }
@@ -13,7 +13,7 @@ export async function addProduct(name, description, priceDollar, priceCents, ima
             priceDollar++;  
         }
     
-        const response = await fetch(`${API_URL}/products/`, {
+        const response = await fetch(`${API_URL}/products`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
