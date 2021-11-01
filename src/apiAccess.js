@@ -13,7 +13,7 @@ export async function addProduct(name, description, priceDollar, priceCents, ima
             priceDollar++;  
         }
     
-        const response = await fetch(`${URL}/products/`, {
+        const response = await fetch(`${API_URL}/products/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -44,7 +44,7 @@ export async function deleteProduct(id, name){
     const confirm = window.confirm(`Are you sure you want to delete ${name}?`);
 
     if(confirm){
-        const response = await fetch(`${URL}/products/${id}`, {
+        const response = await fetch(`${API_URL}/products/${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
@@ -64,7 +64,7 @@ export async function editProduct({id, name, description, price_cents, price_dol
     console.log(id, name, description, price_cents, price_dollar, image);
 
     if(name !== ""  && description !== ""  && price_cents !== "" && price_dollar !== ""  && image !== ""){
-        const response = await fetch(`${URL}/products/${id}`, {
+        const response = await fetch(`${API_URL}/products/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
