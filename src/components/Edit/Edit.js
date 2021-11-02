@@ -61,11 +61,11 @@ export default function Edit(){
                             <Row>
                                 <Col>
                                 <Forms.Label>Dollars</Forms.Label>
-                                <Forms.Control type="text" placeholder="Enter dollars" name="price_dollar" value={product.price_dollar} onChange={(e) => handleChange(e)}/>
+                                <Forms.Control type="number" placeholder="Enter dollars" name="price_dollar" value={product.price_dollar} onChange={(e) => handleChange(e)}/>
                                 </Col>
                                 <Col>
                                 <Forms.Label>Cents</Forms.Label>
-                                <Forms.Control type="text" placeholder="Enter cents" name="price_cents" value={product.price_cents} onChange={(e) => handleChange(e)}/>
+                                <Forms.Control type="number" placeholder="Enter cents" name="price_cents" value={product.price_cents} onChange={(e) => handleChange(e)}/>
                                 </Col>
                             </Row>
                         </Forms.Group>
