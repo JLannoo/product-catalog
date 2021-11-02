@@ -28,11 +28,11 @@ export default function Add(props){
                     <Row>
                         <Col>
                         <Forms.Label>Dollars</Forms.Label>
-                        <Forms.Control type="text" placeholder="Enter dollars" name="price" value={priceDollar} onChange={(e)=>setPriceDollar(e.target.value)}/>
+                        <Forms.Control type="number" placeholder="Enter dollars" name="price" value={priceDollar} onChange={(e)=>setPriceDollar(e.target.value)}/>
                         </Col>
                         <Col>
                         <Forms.Label>Cents</Forms.Label>
-                        <Forms.Control type="text" placeholder="Enter cents" name="price" value={priceCents} onChange={(e)=>setPriceCents(e.target.value)}/>
+                        <Forms.Control type="number" placeholder="Enter cents" name="price" value={priceCents} onChange={(e)=>setPriceCents(e.target.value)}/>
                         </Col>
                     </Row>
                 </Forms.Group>
