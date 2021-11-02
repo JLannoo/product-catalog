@@ -1,6 +1,6 @@
 import React from "react"
 import Form from "react-bootstrap/Form";
-import {Row, Col, Button} from "react-bootstrap";
+import {Row, Col} from "react-bootstrap";
 
 
 export default function FilterSection({setMinPriceFilter, setMaxPriceFilter, setNameFilter}) {
