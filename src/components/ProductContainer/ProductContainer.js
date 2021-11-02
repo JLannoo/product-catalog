@@ -12,7 +12,7 @@ export default function ProdudctContainer({type="catalog", products, deleteFn = 
                             <h3>No products have been found :(</h3> 
                                 : 
                             products.map(product => (
-                                <Col key={product.id} >
+                                <Col key={product.id} xs={12} sm={6} md={4} lg={3}>
                                     <Product product={product}/>
                                 </Col>
                             ))
